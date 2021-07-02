@@ -2,11 +2,8 @@ package com.example.project.service;
 
 import com.example.project.domain.Book;
 import com.example.project.domain.User;
-import com.example.project.dto.BookDto;
-import com.example.project.dto.UserDto;
 import com.example.project.repository.BookRepository;
 import com.example.project.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -30,10 +27,13 @@ public class UserBookService {
     public void assign2(String email, String title){
         User user=userRepository.findUserByEmail(email);
         Book book=bookRepository.findBookByTitle(title);
-        user.getBooks().add(book);
+        Set<Book> books = user.getBooks();
+        books.add(book);
+        user.setBooks(books);
         book.setUser(user);
+//        user.getBooks().add(book);
+//        book.setUser(user);
         userRepository.save(user);
         bookRepository.save(book);
     }
-
 }

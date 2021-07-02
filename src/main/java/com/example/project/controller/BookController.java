@@ -1,13 +1,10 @@
 package com.example.project.controller;
 
 import com.example.project.domain.Book;
-import com.example.project.domain.User;
 import com.example.project.dto.BookDto;
-import com.example.project.dto.UserDto;
 import com.example.project.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Id;

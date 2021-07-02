@@ -3,12 +3,9 @@ package com.example.project.service;
 import com.example.project.domain.Book;
 import com.example.project.dto.BookDto;
 import com.example.project.repository.BookRepository;
-import com.example.project.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class BookService {

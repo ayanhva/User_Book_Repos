@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -17,16 +18,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users/login")
+    @GetMapping("/login")
     public ResponseEntity login(
             @RequestHeader("email") String email,
             @RequestHeader("password") String password){
         if(userService.login(email, password)!=null)
             return new ResponseEntity (userService.login(email, password), HttpStatus.OK);
-        else return new ResponseEntity("Username or Password is wrong!", HttpStatus.OK);
+        else return new ResponseEntity("Username or Password is wrong!", HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/users/register")
+    @PostMapping("/register")
     public ResponseEntity register(@RequestBody UserDto userDto){
         User user = userService.register(userDto);
         return new ResponseEntity("You have successfully registered!", HttpStatus.OK);

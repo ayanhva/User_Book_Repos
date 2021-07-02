@@ -1,12 +1,6 @@
 package com.example.project.controller;
 
-import com.example.project.domain.Book;
-import com.example.project.domain.User;
-import com.example.project.dto.BookDto;
-import com.example.project.dto.UserDto;
-import com.example.project.service.BookService;
 import com.example.project.service.UserBookService;
-import com.example.project.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
