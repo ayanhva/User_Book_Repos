@@ -1,6 +1,5 @@
 package com.example.project.controller;
 
-import com.example.project.domain.Book;
 import com.example.project.service.UserBookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +16,16 @@ public class UserBookController {
         this.userBookService = userBookService;
     }
 
-//    @GetMapping("/showAll")
-//    public ResponseEntity getList(){
-//    }
+//    @GetMapping("/showAll"){
+//      user ---> (books he has: titles)...
+//   }
 
     @PutMapping("/assign/{email}/{title}")
     public ResponseEntity assignBook(
             @PathVariable String email,
             @PathVariable String title
             ){
-       userBookService.assignBook(email, title);
+       userBookService.assignUser(email, title);
 
         return new ResponseEntity("You have successfully assigned the book to the user!", HttpStatus.OK);
     }

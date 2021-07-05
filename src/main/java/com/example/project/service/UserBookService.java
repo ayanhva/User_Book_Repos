@@ -19,14 +19,10 @@ public class UserBookService {
         this.bookRepository = bookRepository;
     }
 
-    public void assignBook(String email, String title){
-        User user = userRepository.findUserByEmail(email);
+    public Book assignUser(String email, String title){
         Book book = bookRepository.findBookByTitle(title);
-
-        user.addBook(book);
-        book.setUser(user);
-        userRepository.save(user);
-        bookRepository.save(book);
+        book.setUser(userRepository.findUserByEmail(email));
+        return bookRepository.save(book);
     }
 
 //    public void assign2(String email, String title){
@@ -40,5 +36,15 @@ public class UserBookService {
 ////        book.setUser(user);
 //        userRepository.save(user);
 //        bookRepository.save(book);
+//    }
+//    public void assignBook(String email, String title){
+//        User user = userRepository.findUserByEmail(email);
+//        Book book = bookRepository.findBookByTitle(title);
+//        if(user != null && book != null){
+//            user.addBook(book);
+//            book.setUser(user);
+//            User savedUser = userRepository.save(user);
+//            Book savedBook = bookRepository.save(book);
+//        }
 //    }
 }

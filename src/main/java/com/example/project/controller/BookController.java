@@ -20,7 +20,7 @@ public class BookController {
 
     @GetMapping("/showAll")
     public ResponseEntity getAll(){
-            if(bookService.showAllBooks()!=null) return new ResponseEntity (bookService.showAllBooks(), HttpStatus.OK);
+            if(bookService.showAllBooks()!= null) return new ResponseEntity (bookService.showAllBooks(), HttpStatus.OK);
             else return new ResponseEntity("No registered books!", HttpStatus.NOT_FOUND);
     }
 
