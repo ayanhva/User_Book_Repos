@@ -1,5 +1,6 @@
 package com.example.project.controller;
 
+import com.example.project.domain.Book;
 import com.example.project.service.UserBookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,8 @@ public class UserBookController {
             @PathVariable String email,
             @PathVariable String title
             ){
-        userBookService.assign2(email, title);
+       userBookService.assignBook(email, title);
+
         return new ResponseEntity("You have successfully assigned the book to the user!", HttpStatus.OK);
     }
 }

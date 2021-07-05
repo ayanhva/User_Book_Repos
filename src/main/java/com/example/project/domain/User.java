@@ -25,6 +25,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
     private Set<Book> books = new HashSet<>();
 
+    public void addBook(Book book){
+        this.books.add(book);
+    }
+
     public User(UserDto userDto) {
         firstName = userDto.getFirstName();
         lastName = userDto.getLastName();

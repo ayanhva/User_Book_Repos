@@ -19,21 +19,26 @@ public class UserBookService {
         this.bookRepository = bookRepository;
     }
 
-//    public void assingToUser(@Autowired Set<Book> books, String email){
-//        userRepository.findUserByEmail(email).setBooks(books);
-//
-//    }
+    public void assignBook(String email, String title){
+        User user = userRepository.findUserByEmail(email);
+        Book book = bookRepository.findBookByTitle(title);
 
-    public void assign2(String email, String title){
-        User user=userRepository.findUserByEmail(email);
-        Book book=bookRepository.findBookByTitle(title);
-        Set<Book> books = user.getBooks();
-        books.add(book);
-        user.setBooks(books);
+        user.addBook(book);
         book.setUser(user);
-//        user.getBooks().add(book);
-//        book.setUser(user);
         userRepository.save(user);
         bookRepository.save(book);
     }
+
+//    public void assign2(String email, String title){
+//        User user=userRepository.findUserByEmail(email);
+//        Book book=bookRepository.findBookByTitle(title);
+//        Set<Book> books = user.getBooks();
+//        books.add(book);
+//        user.setBooks(books);
+//        book.setUser(user);
+////        user.getBooks().add(book);
+////        book.setUser(user);
+//        userRepository.save(user);
+//        bookRepository.save(book);
+//    }
 }
