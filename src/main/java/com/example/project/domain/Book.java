@@ -18,9 +18,9 @@ public class Book {
     private Long Id;
 
     @ManyToOne()
-    @JoinColumn(name = "user_email")
-//    @JoinTable(name = "book_user", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private User user;
+    @JoinColumn(name = "person_id")
+//    @JoinTable(name = "book_person", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
+    private Person person;
 
     private String title;
     private String author;

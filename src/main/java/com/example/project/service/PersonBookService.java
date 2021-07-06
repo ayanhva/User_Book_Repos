@@ -1,34 +1,39 @@
 package com.example.project.service;
 
 import com.example.project.domain.Book;
-import com.example.project.domain.User;
+import com.example.project.domain.Person;
 import com.example.project.repository.BookRepository;
-import com.example.project.repository.UserRepository;
+import com.example.project.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
-public class UserBookService {
+public class PersonBookService {
 
-    private UserRepository userRepository;
+    private PersonRepository personRepository;
     private BookRepository bookRepository;
 
-    public UserBookService(UserRepository userRepository, BookRepository bookRepository) {
-        this.userRepository = userRepository;
+    public PersonBookService(PersonRepository personRepository, BookRepository bookRepository) {
+        this.personRepository = personRepository;
         this.bookRepository = bookRepository;
     }
 
     public Book assignUser(String email, String title) {
         Book book = bookRepository.findBookByTitle(title);
-        book.setUser(userRepository.findUserByEmail(email));
+        book.setPerson(personRepository.findPersonByEmail(email));
         return bookRepository.saveAndFlush(book);
     }
 
     public List<Book> bookListOfUser(String email) {
-        User user = userRepository.findUserByEmail(email);
-        return bookRepository.findAllByUserId(user.getId());
+        Person person = personRepository.findPersonByEmail(email);
+        return bookRepository.findAllByPersonId(person.getId());
+    }
+
+    public Book removeBook(String email, String title){
+        Book book = bookRepository.findBookByTitle(title);
+        book.setPerson(null);
+        return bookRepository.save(book);
     }
 }
 //    public void assign2(String email, String title){

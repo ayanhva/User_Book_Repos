@@ -44,6 +44,14 @@ public class BookController {
         return new ResponseEntity(bookService.sortedBooks(title), HttpStatus.OK);
     }
 
+    @GetMapping("/search/{attribute}")
+    public ResponseEntity search(
+            @PathVariable String attribute){
+        if(bookService.search(attribute) != null)
+            return new ResponseEntity(bookService.search(attribute), HttpStatus.OK);
+        else return new ResponseEntity("No such book in the library!", HttpStatus.NOT_FOUND);
+    }
+
     @PostMapping("/save")
     public ResponseEntity register(@RequestBody BookDto bookDto){
         Book book = bookService.saveBook(bookDto);

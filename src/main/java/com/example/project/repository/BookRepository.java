@@ -1,9 +1,8 @@
 package com.example.project.repository;
 
 import com.example.project.domain.Book;
-import com.example.project.domain.User;
+import com.example.project.domain.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +13,13 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 //    @Query("SELECT b from Book b where b.title = ?1")
       Book findBookByTitle(String title);
 
-      List<Book> findAllByUserId(Long id);
+      Book findBookByAuthor(String author);
 
-      List<Book> findAllByUser(User user);
+      Book findBookByIsbn(String isbn);
+
+      List<Book> findAllByPersonId(Long id);
+
+      List<Book> findAllByPerson(Person person);
+
+      Book deleteBookByPerson(Person person);
 }

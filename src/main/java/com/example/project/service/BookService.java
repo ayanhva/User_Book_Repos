@@ -37,6 +37,13 @@ public class BookService {
     }
 
     public List<Book> showAvailableBooks(){
-        return bookRepository.findAllByUser(null);
+        return bookRepository.findAllByPerson(null);
+    }
+
+    public Book search(String attribute){
+        if(bookRepository.findBookByTitle(attribute) != null) return bookRepository.findBookByTitle(attribute);
+        else if(bookRepository.findBookByAuthor(attribute) != null) return bookRepository.findBookByAuthor(attribute);
+        else if(bookRepository.findBookByIsbn(attribute) != null) return bookRepository.findBookByIsbn(attribute);
+        else return null;
     }
 }
