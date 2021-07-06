@@ -3,6 +3,7 @@ package com.example.project.service;
 import com.example.project.domain.Book;
 import com.example.project.dto.BookDto;
 import com.example.project.repository.BookRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,10 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public  List<Book> sortedBooks(String title){
+        return bookRepository.findAll(Sort.by(Sort.Direction.ASC, "title"));
+    }
+
     public Book showBookByTitle(String title){
         return bookRepository.findBookByTitle(title);
     }
@@ -29,5 +34,9 @@ public class BookService {
         Book book = new Book(bookDto);
         bookRepository.save(book);
         return book;
+    }
+
+    public List<Book> showAvailableBooks(){
+        return bookRepository.findAllByUser(null);
     }
 }

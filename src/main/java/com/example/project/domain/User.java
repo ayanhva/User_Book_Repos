@@ -1,6 +1,8 @@
 package com.example.project.domain;
 
 import com.example.project.dto.UserDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,10 +13,11 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
-public class User {
+@AllArgsConstructor
+public class User{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstName;
@@ -23,6 +26,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    @JsonIgnore
     private Set<Book> books = new HashSet<>();
 
     public void addBook(Book book){

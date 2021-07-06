@@ -6,6 +6,7 @@ import com.example.project.repository.BookRepository;
 import com.example.project.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -19,12 +20,17 @@ public class UserBookService {
         this.bookRepository = bookRepository;
     }
 
-    public Book assignUser(String email, String title){
+    public Book assignUser(String email, String title) {
         Book book = bookRepository.findBookByTitle(title);
         book.setUser(userRepository.findUserByEmail(email));
-        return bookRepository.save(book);
+        return bookRepository.saveAndFlush(book);
     }
 
+    public List<Book> bookListOfUser(String email) {
+        User user = userRepository.findUserByEmail(email);
+        return bookRepository.findAllByUserId(user.getId());
+    }
+}
 //    public void assign2(String email, String title){
 //        User user=userRepository.findUserByEmail(email);
 //        Book book=bookRepository.findBookByTitle(title);
@@ -47,4 +53,3 @@ public class UserBookService {
 //            Book savedBook = bookRepository.save(book);
 //        }
 //    }
-}

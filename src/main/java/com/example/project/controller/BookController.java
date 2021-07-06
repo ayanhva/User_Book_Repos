@@ -32,6 +32,18 @@ public class BookController {
         else return new ResponseEntity("A book with such title does not exist!", HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/available")
+    public ResponseEntity getAvailableBooks(){
+        if(bookService.showAvailableBooks() != null) return new ResponseEntity(bookService.showAvailableBooks(), HttpStatus.OK);
+        else return new ResponseEntity("There are currently no available books!", HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/sort")
+    public ResponseEntity sortByTitle(
+            @RequestHeader("title") String title){
+        return new ResponseEntity(bookService.sortedBooks(title), HttpStatus.OK);
+    }
+
     @PostMapping("/save")
     public ResponseEntity register(@RequestBody BookDto bookDto){
         Book book = bookService.saveBook(bookDto);

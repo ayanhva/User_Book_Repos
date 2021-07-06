@@ -16,9 +16,11 @@ public class UserBookController {
         this.userBookService = userBookService;
     }
 
-//    @GetMapping("/showAll"){
-//      user ---> (books he has: titles)...
-//   }
+    @GetMapping("/show/{email}")
+    public ResponseEntity showBooksByEmail(
+            @PathVariable String email){
+        return new ResponseEntity(userBookService.bookListOfUser(email), HttpStatus.OK);
+   }
 
     @PutMapping("/assign/{email}/{title}")
     public ResponseEntity assignBook(
