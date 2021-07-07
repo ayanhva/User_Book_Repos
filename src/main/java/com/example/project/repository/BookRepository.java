@@ -13,13 +13,11 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 //    @Query("SELECT b from Book b where b.title = ?1")
       Book findBookByTitle(String title);
 
-      Book findBookByAuthor(String author);
-
       Book findBookByIsbn(String isbn);
 
       List<Book> findAllByPersonId(Long id);
 
       List<Book> findAllByPerson(Person person);
 
-      Book deleteBookByPerson(Person person);
+      Integer deleteBookByTitle(String title);
 }

@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookDto {
+public class AuthorDto {
 
-    private String title;
-    private String isbn;
+    private String firstName;
+    private String lastName;
 }

@@ -6,6 +6,7 @@ import com.example.project.repository.BookRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -42,8 +43,16 @@ public class BookService {
 
     public Book search(String attribute){
         if(bookRepository.findBookByTitle(attribute) != null) return bookRepository.findBookByTitle(attribute);
-        else if(bookRepository.findBookByAuthor(attribute) != null) return bookRepository.findBookByAuthor(attribute);
         else if(bookRepository.findBookByIsbn(attribute) != null) return bookRepository.findBookByIsbn(attribute);
         else return null;
+    }
+
+    public Book findByTitle(String title){
+        return bookRepository.findBookByTitle(title);
+    }
+
+    @Transactional
+    public void removeBook(String title){
+        bookRepository.deleteBookByTitle(title);
     }
 }

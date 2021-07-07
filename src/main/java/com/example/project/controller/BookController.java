@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+
 
 @RestController
 @RequestMapping("/books")
@@ -49,6 +51,15 @@ public class BookController {
             @PathVariable String attribute){
         if(bookService.search(attribute) != null)
             return new ResponseEntity(bookService.search(attribute), HttpStatus.OK);
+        else return new ResponseEntity("No such book in the library!", HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/delete/{title}")
+    public ResponseEntity deleteBook(
+            @PathVariable String title){
+        if(bookService.findByTitle(title) != null){
+            bookService.removeBook(title);
+            return new ResponseEntity("The book is removed from the library!", HttpStatus.OK);}
         else return new ResponseEntity("No such book in the library!", HttpStatus.NOT_FOUND);
     }
 

@@ -22,7 +22,7 @@ public class PersonBookService {
     public Book assignUser(String email, String title) {
         Book book = bookRepository.findBookByTitle(title);
         book.setPerson(personRepository.findPersonByEmail(email));
-        return bookRepository.saveAndFlush(book);
+        return bookRepository.save(book);
     }
 
     public List<Book> bookListOfUser(String email) {

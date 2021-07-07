@@ -29,10 +29,6 @@ public class Person {
     @JsonIgnore
     private Set<Book> books = new HashSet<>();
 
-    public void addBook(Book book){
-        this.books.add(book);
-    }
-
     public Person(PersonDto personDto) {
         firstName = personDto.getFirstName();
         lastName = personDto.getLastName();
