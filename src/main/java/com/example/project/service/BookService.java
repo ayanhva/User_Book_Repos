@@ -2,6 +2,7 @@ package com.example.project.service;
 
 import com.example.project.domain.Book;
 import com.example.project.dto.BookDto;
+import com.example.project.mapper.BookMapper;
 import com.example.project.repository.BookRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,12 @@ import java.util.List;
 public class BookService {
 
     private BookRepository bookRepository;
+    private BookMapper bookMapper;
 
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, BookMapper bookMapper) {
 
         this.bookRepository = bookRepository;
+        this.bookMapper = bookMapper;
     }
 
     public List<Book> showAllBooks(){

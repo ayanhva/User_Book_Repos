@@ -6,8 +6,6 @@ import com.example.project.repository.AuthorRepository;
 import com.example.project.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Column;
-
 @Service
 public class AuthorBookService {
 
@@ -19,10 +17,10 @@ public class AuthorBookService {
         this.bookRepository = bookRepository;
     }
 
-    public void assignBookAuthor(String firstName, String lastName, String title){
+    public Book assignBookAuthor(String firstName, String lastName, String title){
         Author author = authorRepository.findByFirstNameAndLastName(firstName, lastName);
         Book book = bookRepository.findBookByTitle(title);
-        book.addAuthor(author);
-        bookRepository.save(book);
+        book.addAuthors(author);
+        return bookRepository.save(book);
     }
 }

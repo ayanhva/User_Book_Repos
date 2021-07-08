@@ -2,6 +2,7 @@ package com.example.project.domain;
 
 
 import com.example.project.dto.AuthorDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Author {
     private String lastName;
 
     @ManyToMany(mappedBy = "authors")
+    @JsonIgnore
     private Set<Book> books = new HashSet<>();
 
     public Author(AuthorDto authorDto){
@@ -33,5 +35,15 @@ public class Author {
 
     public void addBook(Book book){
         this.books.add(book);
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.example.project.controller;
 
+import com.example.project.domain.Book;
 import com.example.project.service.PersonBookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,8 @@ public class PersonBookController {
     @PutMapping("/assign/{email}/{title}")
     public ResponseEntity assignBook(
             @PathVariable String email,
-            @PathVariable String title
-            ){
-       personBookService.assignUser(email, title);
+            @PathVariable String title){
+        Book book = personBookService.assignUser(email, title);
         return new ResponseEntity("You have successfully assigned the book to the user!", HttpStatus.OK);
     }
 
