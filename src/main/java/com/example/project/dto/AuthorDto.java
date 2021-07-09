@@ -1,11 +1,11 @@
 package com.example.project.dto;
 
+import com.example.project.domain.Book;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,5 +14,5 @@ public class AuthorDto {
 
     private String firstName;
     private String lastName;
-    private Set<String> authors = new HashSet<>();
+    private List<Book> books;
 }

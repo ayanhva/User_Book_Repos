@@ -2,23 +2,16 @@ package com.example.project.mapper;
 
 import com.example.project.domain.Book;
 import com.example.project.dto.BookDto;
-import lombok.Data;
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-import java.util.Objects;
+import java.util.List;
 
-@Component
-@Data
-public class BookMapper {
 
-    private ModelMapper mapper;
+@Mapper(componentModel = "spring")
+public interface BookMapper {
+    Book toBookEntity(BookDto bookDto);
 
-    public Book toBookEntity(BookDto bookDto) {
-        return mapper.map(bookDto, Book.class);
-    }
+    BookDto toBookDto(Book book);
 
-    public BookDto toBookDto(Book book){
-        return mapper.map(book, BookDto.class);
-    }
+    List<BookDto> toBookDtoList(List<Book> books);
 }

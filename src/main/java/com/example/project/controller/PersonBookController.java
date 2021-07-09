@@ -4,10 +4,9 @@ import com.example.project.domain.Book;
 import com.example.project.service.PersonBookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/user-book")
 public class PersonBookController {
 
@@ -29,7 +28,7 @@ public class PersonBookController {
     public ResponseEntity assignBook(
             @PathVariable String email,
             @PathVariable String title){
-        Book book = personBookService.assignUser(email, title);
+        personBookService.assignUser(email, title);
         return new ResponseEntity("You have successfully assigned the book to the user!", HttpStatus.OK);
     }
 

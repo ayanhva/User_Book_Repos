@@ -1,6 +1,5 @@
 package com.example.project.domain;
 
-
 import com.example.project.dto.AuthorDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -8,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,24 +27,10 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors")
     @JsonIgnore
-    private Set<Book> books = new HashSet<>();
+    private List<Book> books = new ArrayList<>();
 
     public Author(AuthorDto authorDto){
         firstName = authorDto.getFirstName();
         lastName = authorDto.getLastName();
-    }
-
-    public void addBook(Book book){
-        this.books.add(book);
-    }
-
-    @Override
-    public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", books=" + books +
-                '}';
     }
 }

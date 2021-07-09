@@ -8,7 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+
+@RestController
 @RequestMapping("/users")
 public class PersonController {
 
@@ -29,7 +30,7 @@ public class PersonController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody PersonDto personDto){
-        Person person = personService.register(personDto);
+        personService.register(personDto);
         return new ResponseEntity("You have successfully registered!", HttpStatus.OK);
     }
 }

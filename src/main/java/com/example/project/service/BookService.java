@@ -22,36 +22,39 @@ public class BookService {
         this.bookMapper = bookMapper;
     }
 
-    public List<Book> showAllBooks(){
-        return bookRepository.findAll();
+    public List<BookDto> showAllBooks(){
+        return bookMapper.toBookDtoList(bookRepository.findAll());
     }
 
-    public  List<Book> sortedBooks(String title){
-        return bookRepository.findAll(Sort.by(Sort.Direction.ASC, "title"));
+    public  List<BookDto> sortedBooks(String title){
+        return bookMapper.toBookDtoList(bookRepository.findAll(Sort.by(Sort.Direction.ASC, "title")));
     }
 
-    public Book showBookByTitle(String title){
-        return bookRepository.findBookByTitle(title);
+    public BookDto showBookByTitle(String title){
+
+        return bookMapper.toBookDto(bookRepository.findBookByTitle(title));
     }
 
     public Book saveBook(BookDto bookDto){
-        Book book = new Book(bookDto);
-        bookRepository.save(book);
-        return book;
+        return bookRepository.save(bookMapper.toBookEntity(bookDto));
     }
 
-    public List<Book> showAvailableBooks(){
-        return bookRepository.findAllByPerson(null);
+    public List<BookDto> showAvailableBooks(){
+        
+        return bookMapper.toBookDtoList(bookRepository.findAllByPerson(null));
     }
 
-    public Book search(String attribute){
-        if(bookRepository.findBookByTitle(attribute) != null) return bookRepository.findBookByTitle(attribute);
-        else if(bookRepository.findBookByIsbn(attribute) != null) return bookRepository.findBookByIsbn(attribute);
+    public BookDto search(String attribute){
+        if(bookRepository.findBookByTitle(attribute) != null)
+            return bookMapper.toBookDto(bookRepository.findBookByTitle(attribute));
+        else if(bookRepository.findBookByIsbn(attribute) != null)
+            return bookMapper.toBookDto(bookRepository.findBookByIsbn(attribute));
         else return null;
     }
 
-    public Book findByTitle(String title){
-        return bookRepository.findBookByTitle(title);
+    public BookDto findByTitle(String title){
+
+        return bookMapper.toBookDto(bookRepository.findBookByTitle(title));
     }
 
     @Transactional

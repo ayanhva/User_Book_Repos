@@ -3,13 +3,9 @@ package com.example.project.controller;
 import com.example.project.service.AuthorBookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/book-author")
 public class AuthorBookController {
 
@@ -25,6 +21,13 @@ public class AuthorBookController {
             @PathVariable String lastName,
             @PathVariable String title){
         authorBookService.assignBookAuthor(firstName, lastName, title);
-        return new ResponseEntity(authorBookService.assignBookAuthor(firstName, lastName, title), HttpStatus.OK);
+        return new ResponseEntity("Assignment complete!", HttpStatus.OK);
+    }
+
+    @GetMapping("/show/{firstName}/{lastName}")
+    public ResponseEntity showBooks(
+            @PathVariable String firstName,
+            @PathVariable String lastName){
+        return new ResponseEntity(authorBookService.showBooks(firstName, lastName), HttpStatus.OK);
     }
 }

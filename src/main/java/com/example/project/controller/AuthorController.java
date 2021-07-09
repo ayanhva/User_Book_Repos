@@ -1,15 +1,13 @@
 package com.example.project.controller;
 
-
 import com.example.project.domain.Author;
 import com.example.project.dto.AuthorDto;
 import com.example.project.service.AuthorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/authors")
 public class AuthorController {
 

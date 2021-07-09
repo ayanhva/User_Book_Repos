@@ -1,5 +1,6 @@
 package com.example.project.repository;
 
+import com.example.project.domain.Author;
 import com.example.project.domain.Book;
 import com.example.project.domain.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
       List<Book> findAllByPerson(Person person);
 
       Integer deleteBookByTitle(String title);
+
+      List<Book> findAllByAuthors(Author author);
 }
