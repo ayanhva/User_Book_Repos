@@ -3,6 +3,8 @@ package com.example.project.controller;
 import com.example.project.domain.Person;
 import com.example.project.dto.PersonDto;
 import com.example.project.service.PersonService;
+import com.example.project.service.UserService.MyUserDetailService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
