@@ -1,10 +1,8 @@
 package com.example.project.domain;
 
-import com.example.project.dto.BookDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,10 +26,7 @@ public class Book {
 //    @JoinTable(name = "book_person", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
     private Person person;
 
-    @NotNull
     private String title;
-    @NotNull
-    @UniqueElements
     private String isbn;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -39,12 +34,11 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Author> authors = new ArrayList<>();
 
-    public void addAuthors(Author author){
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private Set<BookPublisher> bookPublisherSet = new HashSet<>();
+
+    public void addAuthors(Author author) {
         authors.add(author);
     }
 
-    public Book(BookDto bookDto) {
-        title = bookDto.getTitle();
-        isbn = bookDto.getIsbn();
-    }
 }

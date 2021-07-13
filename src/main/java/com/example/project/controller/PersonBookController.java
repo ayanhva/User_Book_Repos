@@ -1,6 +1,5 @@
 package com.example.project.controller;
 
-import com.example.project.domain.Book;
 import com.example.project.service.PersonBookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

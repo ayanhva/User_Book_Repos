@@ -1,12 +1,12 @@
 package com.example.project.dto;
 
 import com.example.project.domain.Author;
+import com.example.project.domain.BookPublisher;
 import com.example.project.domain.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,4 +19,5 @@ public class BookDto {
     private String isbn;
     private Person person;
     private List<Author> authors;
+    Set<BookPublisher> bookPublisherSet;
 }

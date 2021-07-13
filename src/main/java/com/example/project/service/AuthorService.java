@@ -4,7 +4,6 @@ import com.example.project.domain.Author;
 import com.example.project.dto.AuthorDto;
 import com.example.project.mapper.AuthorMapper;
 import com.example.project.repository.AuthorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
