@@ -1,13 +1,9 @@
 package com.example.project.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,7 +11,13 @@ import java.time.LocalDateTime;
 @Data
 public class ConfToken {
 
+    @SequenceGenerator(
+            name = "confirmation_sequence",
+            sequenceName = "confirmation_sequence",
+            allocationSize = 1
+    )
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "confirmation_sequence")
     private Long id;
     private String token;
     private LocalDateTime localDateTime;

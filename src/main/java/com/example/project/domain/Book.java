@@ -4,8 +4,10 @@ import com.example.project.dto.BookDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +28,10 @@ public class Book {
 //    @JoinTable(name = "book_person", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
     private Person person;
 
+    @NotNull
     private String title;
+    @NotNull
+    @UniqueElements
     private String isbn;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

@@ -9,6 +9,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,13 +22,27 @@ import java.util.Set;
 @AllArgsConstructor
 public class Person implements UserDetails {
 
+    @SequenceGenerator(
+            name = "person_sequence",
+            sequenceName = "person_sequence",
+            allocationSize = 1
+    )
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_sequence")
     private Long id;
 
+    @NotNull(message = "First name cannot be null")
     private String firstName;
+
+    @NotNull(message = "Last name cannot be null")
     private String lastName;
+
+    @NotNull(message = "Email cannot be null")
+    @Email(message = "Non valid email!")
     private String email;
+
+    @NotNull(message = "Password cannot be null")
+    @Size(min = 8, message = "Password must be more than 7 characters")
     private String password;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
