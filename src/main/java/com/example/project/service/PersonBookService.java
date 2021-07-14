@@ -41,25 +41,3 @@ public class PersonBookService {
         bookRepository.save(book);
     }
 }
-//    public void assign2(String email, String title){
-//        User user=userRepository.findUserByEmail(email);
-//        Book book=bookRepository.findBookByTitle(title);
-//        Set<Book> books = user.getBooks();
-//        books.add(book);
-//        user.setBooks(books);
-//        book.setUser(user);
-////        user.getBooks().add(book);
-////        book.setUser(user);
-//        userRepository.save(user);
-//        bookRepository.save(book);
-//    }
-//    public void assignBook(String email, String title){
-//        User user = userRepository.findUserByEmail(email);
-//        Book book = bookRepository.findBookByTitle(title);
-//        if(user != null && book != null){
-//            user.addBook(book);
-//            book.setUser(user);
-//            User savedUser = userRepository.save(user);
-//            Book savedBook = bookRepository.save(book);
-//        }
-//    }

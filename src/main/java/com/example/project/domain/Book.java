@@ -1,5 +1,6 @@
 package com.example.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,8 @@ public class Book {
     private List<Author> authors = new ArrayList<>();
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private Set<BookPublisher> bookPublisherSet = new HashSet<>();
+    @JsonIgnore
+    private List<BookPublisher> bookPublisherSet = new ArrayList<>();
 
     public void addAuthors(Author author) {
         authors.add(author);

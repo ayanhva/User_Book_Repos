@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +41,6 @@ public class Person implements UserDetails {
     private String email;
 
     @NotNull(message = "Password cannot be null")
-    @Size(min = 8, message = "Password must be more than 7 characters")
     private String password;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)

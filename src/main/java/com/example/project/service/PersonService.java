@@ -5,6 +5,7 @@ import com.example.project.domain.Person;
 import com.example.project.dto.PersonDto;
 import com.example.project.mapper.PersonMapper;
 import com.example.project.repository.PersonRepository;
+import com.example.project.service.validity.PasswordValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,6 +24,7 @@ public class PersonService implements UserDetailsService {
     private PersonMapper personMapper;
     private final ConfTokenService confTokenService;
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    PasswordValidator passwordValidator;
 
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return personRepository.findByEmail(email);
@@ -36,13 +38,16 @@ public class PersonService implements UserDetailsService {
 
     public String register(PersonDto personDto){
         Person person = personMapper.toPersonEntity(personDto);
-        if(personRepository.findPersonByEmail(person.getEmail()) != null) return "Email is taken!";
+        if(personRepository.findPersonByEmail(person.getEmail()) != null)
+            return "Email is taken!";
+        if(!passwordValidator.isValidPassword(person.getPassword()))
+            return "Enter a valid password!";
         person.setPassword(bCryptPasswordEncoder.encode(person.getPassword()));
         personRepository.save(person);
 
         String token = UUID.randomUUID().toString();
         ConfToken confToken = new ConfToken(token, LocalDateTime.now(), LocalDateTime.now().plusMinutes(15), person);
         confTokenService.saveConfToken(confToken);
-        return "You ave successfully registered!";
+        return "You have successfully registered!";
     }
 }

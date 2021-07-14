@@ -1,5 +1,7 @@
 package com.example.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreType
 public class BookPublisher {
 
     @Id
@@ -20,6 +23,7 @@ public class BookPublisher {
     Publisher publisher;
 
     @ManyToOne
+    @JsonIgnore
     Book book;
 
     LocalDateTime registeredAt;

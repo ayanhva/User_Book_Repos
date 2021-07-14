@@ -1,12 +1,14 @@
 package com.example.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,5 +24,6 @@ public class Publisher {
     private String lastName;
 
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
-    private Set<BookPublisher> bookPublisherSet = new HashSet<>();
+    @JsonIgnore
+    private List<BookPublisher> bookPublisherSet = new ArrayList<>();
 }
